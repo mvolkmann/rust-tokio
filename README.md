@@ -1,6 +1,6 @@
 # rust-tokio
 
-This demonstrates three approaches to processing the results of tasks
+This demonstrates three approaches to processing the results of tokio tasks
 in the order in which the tasks complete rather than
 the order in which the tasks were created.
 
