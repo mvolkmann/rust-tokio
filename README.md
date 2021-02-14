@@ -16,5 +16,9 @@ The approaches are:
 It seems likely that the channels approach is the most efficient
 because the other two approaches repeatedly poll the futures.
 
+The code in `src/main-join_all.rs` demonstrates
+waiting for all the tasks to complete before processing their results,
+rather than processing the result of each task as it completes.
+
 To run each of these, copy the corresponding source file to `src/main.rs`
 and enter `cargo run`.
