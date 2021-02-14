@@ -25,6 +25,7 @@ async fn main() {
         // The next line allows results to be buffered
         // in the order in which the tasks complete rather than
         // in the order in which the tasks were created.
+        // This uses FuturesUnordered internally.
         .buffer_unordered(COUNT);
 
     // While there is another result in the stream ...
