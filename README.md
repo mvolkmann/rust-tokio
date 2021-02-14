@@ -13,12 +13,21 @@ The approaches are:
 1. Using a `futures::stream` to stream results from tasks to the main thread.
    (see `src/main-stream.rs`)
 
-It seems likely that the channels approach is the most efficient
-because the other two approaches repeatedly poll the futures.
-
 The code in `src/main-join_all.rs` demonstrates
 waiting for all the tasks to complete before processing their results,
 rather than processing the result of each task as it completes.
+
+A potential issue to consider is the performance impact
+of loops that determine when a task result is available.
+This is not a significant issue with any of the approaches demonstrated here.
+In particular, the `FuturesUnordered` documentation says:
+"This structure is optimized to manage a large number of futures.
+Futures managed by FuturesUnordered will only be polled
+when they generate wake-up notifications. This reduces
+the required amount of work needed to poll large numbers of futures."
+
+This is an issue to consider when using `futures::future::join_all`
+with a large number of futures.
 
 To run each of these, copy the corresponding source file to `src/main.rs`
 and enter `cargo run`.
